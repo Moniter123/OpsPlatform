@@ -1,0 +1,64 @@
+{% extends 'bootstrap.html' %}
+
+{% block content %}
+<div class="row-fluid">
+    <div class="span4">
+        <form action="{{ url_for('game.japan') }}" method="post">
+          <div class="panel panel-primary">
+            <div class="panel-heading">
+              <h3 class="panel-title">Japan CBT</h3>
+            </div>
+            <div class="panel-body">
+            <div class="form-group" class="form-group-sm">
+                <div class="col-xs-4">
+                     <label for="name">选择操作内容<br>注意:<br>配置、热更前修改版本号</label>
+                    <select name="comp_select" class="selectpicker form-control">
+                      {% for k,v in tag.items() %}
+                      <option value="{{ k }}" >{{ v }}</option>
+                          {{ k }}
+                          {{ v }}
+                      {% endfor %}
+                    </select>
+
+                      <table>
+                          <br>
+                        <tr>
+                          <td><button type="submit" class="btn btn-primary" name="do_action" value="run" onclick="$('#loading').show();$('#hiding').hide();">Run</button></td>
+                        </tr>
+                      </table>
+                </div>
+              </div>
+
+            {# 当没有选择任何操作项目的时候通过flash传出提示消息 start#}
+                {% for message in get_flashed_messages() %}
+                  <div id="myAlert" class="alert alert-warning">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    {{ message }} {{ cmd }}
+                 </div>
+                {% endfor %}
+            {# 当没有选择任何操作项目的时候通过flash传出提示消息 end #}
+
+            </div>
+          </div>
+
+        </form>
+    </div>
+
+    <div class="row-fluid">
+        <div class="span4">
+            <div class="panel-heading">
+             <h3 class="panel-title">执行结果</h3>
+            </div>
+                <textarea style="margin: 0px 0px 10px; height: 400px; width: 530px; background-color: black;color: green">
+{% for s,v in notice %}
+  {{ s }}
+  ---------------------
+  {{ v }}
+{% endfor %}
+                </textarea>
+        </div>
+    </div>
+</div>
+    <hr>
+
+{% endblock %}

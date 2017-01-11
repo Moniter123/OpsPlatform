@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html >
+	<head>	
+		<meta charset="utf-8" />
+		<title>Flask Web</title>
+		<link href="{{ url_for('static',filename='assets/css/bootstrap.min.css') }}" rel="stylesheet" />
+		<link rel="stylesheet" href="{{ url_for('static',filename='assets/css/font-awesome.min.css') }}" />
+		<!-- <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,300" /> -->
+{#		<link rel="shortcut icon" href="{{ url_for('static',filename='assets/images/favicon.ico') }}" type="image/x-icon">#}
+		<link rel="stylesheet" href="{{ url_for('static',filename='assets/css/ace.min.css') }}" />
+		<link rel="stylesheet" href="{{ url_for('static',filename='assets/css/ace-rtl.min.css') }}" />
+		<link rel="stylesheet" href="{{ url_for('static',filename='assets/css/ace-skins.min.css') }}" />
+		<script src="{{ url_for('static',filename='assets/js/ace-extra.min.js') }}"></script>
+	</head>
+
+{% if current_user.is_authenticated %}
+	<body>
+		<div class="navbar navbar-default" id="navbar">
+			<script type="text/javascript">
+				try{ace.settings.check('navbar' , 'fixed')}catch(e){}
+			</script>
+
+			<div class="navbar-container" id="navbar-container">
+				<div class="navbar-header pull-left">
+					<a href="{{ url_for('main.basic') }}" class="navbar-brand">
+						<small>
+							<i class="icon-leaf" ></i>
+							Platform
+						</small>
+					</a><!-- /.brand -->
+				</div><!-- /.navbar-header -->
+
+				<div class="navbar-header pull-right" role="navigation">
+					<ul class="nav ace-nav">
+					
+
+						<li class="light-red">
+							<a data-toggle="dropdown" href="#" class="dropdown-toggle">
+{#								<img class="nav-user-photo" src="{{ url_for('static',filename='assets/avatars/user.jpg') }}" alt="Jason's Photo" />#}
+								<span class="user-info">
+									<small>Welcome,</small>
+									{{ current_user.username }}
+								</span>
+
+								<i class="icon-caret-down"></i>
+							</a>
+
+							<ul class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
+								
+
+								<li>
+									<a href="{{ url_for('auth.logout')}}">
+										<i class="icon-off"></i>
+										退出
+									</a>
+								</li>
+							</ul>
+						</li>
+					</ul><!-- /.ace-nav -->
+				</div><!-- /.navbar-header -->
+			</div><!-- /.container -->
+		</div>
+
+		<div class="main-container" id="main-container">
+			<script type="text/javascript">
+				try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+			</script>
+
+			<div class="main-container-inner">
+				<a class="menu-toggler" id="menu-toggler" href="#">
+					<span class="menu-text"></span>
+				</a>
+
+				<div class="sidebar" id="sidebar">
+					<script type="text/javascript">
+						try{ace.settings.check('sidebar' , 'fixed')}catch(e){}
+					</script>
+					<ul class="nav nav-list">
+						<li class="active">
+{#							<a href="{{ url_for('main.test') }}">#}
+{#								<i class="icon-dashboard"></i>#}
+{#								<span class="menu-text"> 仪表盘 </span>#}
+{##}
+{#							</a>#}
+						</li>
+
+						<li>
+							<a href="#" class="dropdown-toggle">
+								<i class="icon-inbox"></i>
+								<span class="menu-text"> 资产管理</span>
+								<span class="badge badge-second ">2</span>
+								<b class="arrow icon-angle-down"></b>
+							</a>
+
+							<ul class="submenu">
+								<li>
+									<a href="#">
+										<i class="icon-double-angle-right"></i>
+										查看服务器资产
+									</a>
+								</li>
+
+								<li>
+									<a href="#">
+										<i class="icon-double-angle-right"></i>
+										查看服务器分布
+									</a>
+								</li>
+							</ul>
+						</li>
+
+						<li>
+							<a href="#" class="dropdown-toggle">
+								<i class="icon-list"></i>
+								<span class="menu-text"> 游戏服操作 </span>
+								<span class="badge badge-second "></span>
+								<b class="arrow icon-angle-down"></b>
+							</a>
+
+							<ul class="submenu">
+								<li>
+									<a href="#" class="dropdown-toggle">
+										<i class="icon-double-angle-right"></i>
+
+										国服
+										<b class="arrow icon-angle-down"></b>
+									</a>
+
+									<ul class="submenu">
+								<!-- 		<li>
+											<a href="#">
+												<i class="icon-leaf"></i>
+												第一级
+											</a>
+										</li> -->
+
+										<li>
+
+											<a href="#" class="dropdown-toggle">
+												<i class="icon-pencil"></i>
+
+												停服操作
+												<b class="arrow icon-angle-down"></b>
+											</a>
+
+											<ul class="submenu">
+												<li>
+													<a href="#">
+														<i class="icon-plus"></i>
+														所有服
+													</a>
+												</li>
+												<li>
+													<a href="#">
+														<i class="icon-plus"></i>
+														安卓服
+													</a>
+												</li>
+												<li>
+													<a href="#">
+														<i class="icon-plus"></i>
+														IOS服
+													</a>
+												</li>
+	
+												<li>
+													<a href="#">
+														<i class="icon-eye-open"></i>
+														查看商品
+													</a>
+												</li>
+											</ul>
+										</li>
+										<li>
+
+											<a href="#" class="dropdown-toggle">
+												<i class="icon-pencil"></i>
+
+												第四级
+												<b class="arrow icon-angle-down"></b>
+											</a>
+
+											<ul class="submenu">
+												<li>
+													<a href="#">
+														<i class="icon-plus"></i>
+														添加产品1
+													</a>
+												</li>
+												<li>
+													<a href="#">
+														<i class="icon-plus"></i>
+														添加产品2
+													</a>
+												</li>
+												<li>
+													<a href="#">
+														<i class="icon-plus"></i>
+														添加产品3
+													</a>
+												</li>
+
+												<li>
+													<a href="#">
+														<i class="icon-eye-open"></i>
+														查看商品
+													</a>
+												</li>
+											</ul>
+										</li>
+										</li>
+											<li>
+											<a href="#">
+												<i class="icon-plus"></i>
+												游戏服添加
+											</a>
+										</li>
+									</ul>
+											<!-- CBT -->
+								<li>
+									<a href="#" class="dropdown-toggle">
+										<i class="icon-double-angle-right"></i>
+
+										国服 CBT
+										<b class="arrow icon-angle-down"></b>
+									</a>
+
+									<ul class="submenu">
+										<li>
+											<a href="#">
+												<i class="icon-leaf"></i>
+												更新1
+											</a>
+										</li>
+
+										<li>
+											<a href="#" class="dropdown-toggle">
+												<i class="icon-pencil"></i>
+
+												更新
+												<b class="arrow icon-angle-down"></b>
+											</a>
+
+											<ul class="submenu">
+												<li>
+													<a href="#">
+														<i class="icon-plus"></i>
+														热更新
+													</a>
+												</li>
+
+												<li>
+													<a href="#">
+														<i class="icon-eye-open"></i>
+														代码更新
+													</a>
+												</li>
+												<li>
+													<a href="#">
+														<i class="icon-eye-open"></i>
+														配置更新
+													</a>
+												</li>
+											</ul>
+										</li>
+
+									</ul>
+									<li>
+									<!-- 日服测试服-->
+								<li>
+									<a href="#" class="dropdown-toggle">
+										<i class="icon-double-angle-right"></i>
+
+										日服 测试服
+										<b class="arrow icon-angle-down"></b>
+									</a>
+
+									<ul class="submenu">
+										<li>
+											<a href="#">
+												<i class="icon-leaf"></i>
+												更新
+											</a>
+										</li>
+
+										<li>
+											<a href="#" class="dropdown-toggle">
+												<i class="icon-pencil"></i>
+
+												更新
+												<b class="arrow icon-angle-down"></b>
+											</a>
+
+											<ul class="submenu">
+												<li>
+													<a href="#">
+														<i class="icon-plus"></i>
+														热更新
+													</a>
+												</li>
+
+												<li>
+													<a href="#">
+														<i class="icon-eye-open"></i>
+														代码更新
+													</a>
+												</li>
+												<li>
+													<a href="#">
+														<i class="icon-eye-open"></i>
+														配置更新
+													</a>
+												</li>
+											</ul>
+										</li>
+									</ul>
+											<!-- CBT -->
+								<li>
+									<a href="#" class="dropdown-toggle">
+										<i class="icon-double-angle-right"></i>
+
+										日服 CBT
+										<b class="arrow icon-angle-down"></b>
+									</a>
+
+									<ul class="submenu">
+										<li>
+											<a href="#">
+												<i class="icon-leaf"></i>
+												更新操作
+											</a>
+										</li>
+									<li>
+											<a href="#">
+												<i class="icon-leaf"></i>
+												维护操作
+											</a>
+										</li>
+									
+									</ul>
+									<li>
+
+									<!-- 日服 正式服 -->
+									<a href="#" class="dropdown-toggle">
+										<i class="icon-double-angle-right"></i>
+
+										日服 正式服
+										<b class="arrow icon-angle-down"></b>
+									</a>
+
+									<ul class="submenu">
+										<li>
+											<a href="#">
+												<i class="icon-leaf"></i>
+												ddd
+											</a>
+										</li>
+
+										<li>
+											<a href="#" class="dropdown-toggle">
+												<i class="icon-pencil"></i>
+
+												更新
+												<b class="arrow icon-angle-down"></b>
+											</a>
+
+											<ul class="submenu">
+												<li>
+													<a href="#">
+														<i class="icon-plus"></i>
+														热更新
+													</a>
+												</li>
+
+												<li>
+													<a href="#">
+														<i class="icon-eye-open"></i>
+														代码更新
+													</a>
+												</li>
+												<li>
+													<a href="#">
+														<i class="icon-eye-open"></i>
+														配置更新
+													</a>
+												</li>
+								
+											</ul>
+										</li>
+											<li>
+											<a href="#">
+												<i class="icon-leaf"></i>
+												游戏服添加
+											</a>
+										</li>
+									</ul>
+							</ul>
+						</li>
+
+						<li>
+							<a href="#" class="dropdown-toggle">
+								<i class="icon-edit"></i>
+								<span class="menu-text"> Zabbix Add/Del  </span>
+
+								<b class="arrow icon-angle-down"></b>
+							</a>
+
+							<ul class="submenu">
+								<li>
+									<a href="#">
+										<i class="icon-double-angle-right"></i>
+										Zabbix主机添加(批量)
+									</a>
+								</li>
+
+								<li>
+									<a href="#">
+										<i class="icon-double-angle-right"></i>
+										Zabbix主机删除(批量)
+									</a>
+								</li>
+
+								<li>
+									<a href="wysiwyg.html">
+										<i class="icon-double-angle-right"></i>
+										编辑器
+									</a>
+								</li>
+
+								<li>
+									<a href="dropzone.html">
+										<i class="icon-double-angle-right"></i>
+										文件上传
+									</a>
+								</li>
+							</ul>
+						</li>
+<!--  salt -->
+					<li>
+							<a href="#" class="dropdown-toggle">
+								<i class="icon-tag"></i>
+								<span class="menu-text"> SaltStack 操作 </span>
+
+								<b class="arrow icon-angle-down"></b>
+							</a>
+
+							<ul class="submenu">
+								<li>
+									<a href="#">
+										<i class="icon-double-angle-right"></i>
+										Minion 认证管理
+									</a>
+								</li>
+								<li>
+									<a href="#">
+										<i class="icon-double-angle-right"></i>
+										Salt 命令执行
+									</a>
+								</li>
+
+								<li>
+									<a href="#">
+										<i class="icon-double-angle-right"></i>
+										登录 &amp; 注册
+									</a>
+								</li>
+							</ul>
+						</li>
+<!--  -->
+						<li>
+							<a href="#" class="dropdown-toggle">
+								<i class="icon-tag"></i>
+								<span class="menu-text"> 更多页面 </span>
+
+								<b class="arrow icon-angle-down"></b>
+							</a>
+
+							<ul class="submenu">
+								<li>
+									<a href="profile.html">
+										<i class="icon-double-angle-right"></i>
+										用户信息
+									</a>
+								</li>
+
+								<li>
+									<a href="inbox.html">
+										<i class="icon-double-angle-right"></i>
+										收件箱
+									</a>
+								</li>
+
+								<li>
+									<a href="pricing.html">
+										<i class="icon-double-angle-right"></i>
+										售价单
+									</a>
+								</li>
+
+								<li>
+									<a href="invoice.html">
+										<i class="icon-double-angle-right"></i>
+										购物车
+									</a>
+								</li>
+
+								<li>
+									<a href="timeline.html">
+										<i class="icon-double-angle-right"></i>
+										时间轴
+									</a>
+								</li>
+
+								<li>
+									<a href="login.html">
+										<i class="icon-double-angle-right"></i>
+										登录 &amp; 注册
+									</a>
+								</li>
+							</ul>
+						</li>
+
+
+<!--  -->
+						<li>
+							<a href="#" class="dropdown-toggle">
+								<i class="icon-file-alt"></i>
+
+								<span class="menu-text">
+									其他页面
+									<span class="badge badge-primary ">5</span>
+								</span>
+
+								<b class="arrow icon-angle-down"></b>
+							</a>
+
+							<ul class="submenu">
+								<li>
+									<a href="faq.html">
+										<i class="icon-double-angle-right"></i>
+										帮助
+									</a>
+								</li>
+
+								<li>
+									<a href="error-404.html">
+										<i class="icon-double-angle-right"></i>
+										404错误页面
+									</a>
+								</li>
+
+								<li>
+									<a href="error-500.html">
+										<i class="icon-double-angle-right"></i>
+										500错误页面
+									</a>
+								</li>
+
+								<li>
+									<a href="grid.html">
+										<i class="icon-double-angle-right"></i>
+										网格
+									</a>
+								</li>
+
+								<li>
+									<a href="blank.html">
+										<i class="icon-double-angle-right"></i>
+										空白页面
+									</a>
+								</li>
+							</ul>
+						</li>
+					</ul><!-- /.nav-list -->
+<!--左边栏结束 -->
+					
+					
+					<div class="sidebar-collapse" id="sidebar-collapse">
+						<i class="icon-double-angle-left" data-icon1="icon-double-angle-left" data-icon2="icon-double-angle-right"></i>
+					</div>
+
+					<script type="text/javascript">
+						try{ace.settings.check('sidebar' , 'collapsed')}catch(e){}
+					</script>
+				</div>
+
+
+    <div class="main-content">
+					<div class="breadcrumbs" id="breadcrumbs">
+						<script type="text/javascript">
+							try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
+						</script>
+
+						<ul class="breadcrumb">
+							<li>
+								<i class="icon-home home-icon"></i>
+								<a href="{{ url_for('main.basic') }}">首页</a>
+							</li>
+						</ul><!-- .breadcrumb -->
+					</div>
+
+				<div class="page-content">
+
+		{% block content %}{% endblock %}
+
+					</div>
+
+{#{% else %}#}
+{#<h1>#}
+{#Please login to change the page!#}
+{#<a href="{{ url_for('auth.login') }}">Log In</a>#}
+{#</h1>#}
+{#{% extends "auth/login.html" %}#}
+{#                <li><a href="{{ url_for('auth.login') }}">Log In</a></li>#}
+{% endif %}
+
+		
+		<!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>-->
+		<script src="{{url_for('static',filename='assets/js/jquery.min.js')}}"></script>
+
+	
+
+		<script type="text/javascript">
+			window.jQuery || document.write("<script src='assets/js/jquery-2.0.3.min.js'>"+"<"+"script>");
+		</script>
+
+		<script type="text/javascript">
+			if("ontouchend" in document) document.write("<script src="{{ url_for('static',filename='assets/js/jquery.mobile.custom.min.js') }}">"+"<"+"script>");
+		</script>
+
+		<script src="{{ url_for('static',filename='assets/js/bootstrap.min.js') }}"></script>
+		<script src="{{ url_for('static',filename='assets/js/typeahead-bs2.min.js') }}"></script>
+		<script src="{{ url_for('static',filename='assets/js/ace-extra.min.js') }}"></script>
+		<script src="{{ url_for('static',filename='assets/js/jquery-ui-1.10.3.custom.min.js') }}"></script>
+		<script src="{{ url_for('static',filename='assets/js/jquery.ui.touch-punch.min.js') }}"></script>
+		<script src="{{ url_for('static',filename='assets/js/jquery.slimscroll.min.js') }}"></script>
+		<script src="{{ url_for('static',filename='assets/js/jquery.easy-pie-chart.min.js') }}"></script>
+		<script src="{{ url_for('static',filename='assets/js/jquery.sparkline.min.js') }}"></script>
+		<script src="{{ url_for('static',filename='assets/js/flot/jquery.flot.min.js') }}"></script>
+		<script src="{{ url_for('static',filename='assets/js/flot/jquery.flot.pie.min.js') }}"></script>
+		<script src="{{ url_for('static',filename='assets/js/flot/jquery.flot.resize.min.js') }}"></script>
+		<script src="{{ url_for('static',filename='assets/js/ace-extra.min.js') }}"></script>
+		<script src="{{ url_for('static',filename='assets/js/ace-elements.min.js') }}"></script>
+		<script src="{{ url_for('static',filename='assets/js/ace.min.js') }}"></script>
+
+</body>
+</html>
+

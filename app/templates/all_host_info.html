@@ -1,0 +1,21 @@
+{% extends 'bootstrap.html' %}
+
+{% block content %}
+    <form action="{{ url_for('salt.hostlist') }}" method="post">
+    {% for host in all_host %}
+        Hostname : {{host['hostname'] }} <br>
+        Private_IP: {{ host['private_ip']}} <br>
+        Public_IP:{{ host['public_ip']}} <br>
+        Mem_Total: {{host['mem_total']}}M <br>
+        Cpu_Type: {{host['cpu_type']}} <br>
+        Num_Cpus: {{host['num_cpus']}} <br>
+        OS_Release: {{host['os_release']}} <br>
+        KernelRelease: {{ host['kernelrelease'] }} <br>
+        <hr>
+    {% endfor %}
+    </form>
+    {% for detail in details %}
+    {{ detail[0] }} {{ detail[1] }} {{ detail[2] }} {{ detail[3] }}<br>
+
+    {% endfor %}
+{% endblock %}

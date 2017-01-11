@@ -1,0 +1,55 @@
+﻿{% extends "bootstrap.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% block head %}
+{{ super() }}
+{% endblock %}
+
+
+{% block content %}
+<div class="row-fluid">
+            <div class="span9">
+                    <div class="widget-header widget-header-flat">
+                        <h4 class="lighter">
+                            Zabbix主机删除(批量)
+                        </h4>
+                    </div>
+                 <h5>请填写需要删除的主机<code>&lt;主机名&gt;</code>以 逗号 隔开.</h5>
+                 <form role="form" action='{{ url_for('zabbix.zabbixdel') }}', method='POST'>
+                      <div class="form-group">
+                            <textarea type="text" name="contenet" class="form-control" rows="4" placeholder="host1,host2,host3..." style="margin: 0px 0px 10px; height: 100px; width: 550px; background-color: write;color: black"></textarea>
+                      </div>
+                          <button type="submit" class="btn btn-primary"> Run </button>
+                           {% for message in get_flashed_messages() %}
+                            <div id="myAlert" class="alert alert-warning">
+                                <button type="button" class="close" data-dismiss="alert"></button>
+                                {{ message }} {{ cmd }}
+                            </div>
+                        {% endfor %}
+                </form>
+<hr>
+
+        </div>
+
+      <div class="span4">
+        <div class="row">
+            <div class="col-sm-10">
+                <div class="widget-box transparent">
+                    <div class="widget-header widget-header-flat">
+                        <h4 class="lighter">
+                            执行结果
+                        </h4>
+                    </div>
+
+                        <textarea style="margin: 0px 0px 10px; height: 172px; width: 530px; background-color: black;color: green">
+{% for res in result %}  {{ res }}
+{% endfor %}
+                        </textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<hr>
+
+{% endblock %}
+

@@ -1,0 +1,18 @@
+{% extends 'bootstrap.html' %}
+
+{% block content %}
+<form action= "{{url_for('salt.get')}}" method="POST"  >
+
+  <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <button type="submit" class="btn btn-info">一键收集</button>
+        </div>
+      </div>
+</form>
+    <hr>
+
+{{ hostname }},{{ memory }},{{ num_cpus }},{{  public_ip }},{{  private_ip}},{{ kernel }}
+
+<hr>
+
+{% endblock %}

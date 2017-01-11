@@ -1,0 +1,63 @@
+{% extends 'new_basic.html' %}
+{% block title %}软件部署{% endblock %}
+
+<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='main/css/bootstrap-progressbar.css') }}">
+
+{% block content %}
+<aside class="right-side" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+  <section class="col-lg-5 connectedSortable ui-sortable">
+            <div class="row">
+
+                <!-- start -->
+             <div class="col-xs-12">
+              <div class="box">
+                <div class="box-header">
+                  <h3 class="box-title">配置推送</h3>
+                </div>
+
+
+                <!-- /.box-header -->
+                   <div class="box-body">
+                       配置推送
+                   </div>
+
+              </div>
+             </div>
+               <!-- end -->
+
+
+            </div>
+        </section>
+
+
+
+    <aside class="right-side" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+           <section class="col-lg-12 connectedSortable ui-sortable">
+            <div class="row">
+
+            {% for detail in details %}
+
+
+             <div class="col-xs-3">
+              <div class="box">
+                <div class="box-header">
+                  <h3 class="box-title">#task{{ detail[1] }}<br>{{ detail[2] }}</h3>
+                </div>
+                   <div class="box-body">
+                            <div class="small-box bg-green">
+
+
+
+                        <i class="ion ion-loading-d" ></i>{{ detail[5] }}
+                    </div>
+
+                   </div>
+              </div>
+             </div>
+            {% endfor %}
+
+            </div>
+        </section>
+    </aside>
+{% endblock %}
+
