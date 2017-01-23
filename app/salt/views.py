@@ -232,7 +232,7 @@ def deploy():
 
     """
     Soft_dict={
-         1:'a',
+         1:'nginx/init',
          2:'php-fpm',
          3:'appliaction/zabbix-agent/zabbix_agent',
          4:'init-system',
@@ -255,7 +255,7 @@ def deploy():
         soft=[]
         client = SaltApi()
 
-        fo = open('/tmp/deploy_cache','w') # 执行结果输出到缓存文件
+        fo = open('/tmp/deploy_cache','a+') # 执行结果输出到缓存文件
         for soft_num in soft_list:
             if int(soft_num)  in Soft_dict.keys():
                 for tgt_host in server_list:
@@ -296,11 +296,27 @@ def deployresult():
         client = SaltApi()
 
         client.get_jobs(JID)
-        #result = dict(json.loads(client.get_jobs(JID))['return'][0])  # salt_2016.11.1 新版本使用该语句
+        result = json.loads(client.get_jobs(JID))['return'][0] # salt_2016.11.1 新版本使用该语句
+        #result = json.loads(client.get_jobs(JID))['return'][0]['data'] # salt_2015.5.10 老版本使用该语句
+        for k ,v in result.items():
+            print k
+            for i in v.values():
+                print i
+        states_count = str(result).count('comment')
 
-        result = json.loads(client.get_jobs(JID))['return'][0]['data'] # salt_2015.5.10 老版本使用该语句
+        change_count = str(result).count('pid,diff')
 
-        return render_template('new_deployresult.html', result=result)
+        failed_count_res = int(str(result).count('False')) -1
+        if failed_count_res < 0:
+            failed_count = 0
+            print result
+            return render_template('new_deployresult.html',
+                                   result=result,
+                                   states_count=states_count,
+                                   change_count=change_count,
+                                   failed_count=failed_count,
+                                   JID=JID
+                                   )
     return render_template('new_deployresult.html')
 
 #####################################################################################

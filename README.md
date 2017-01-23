@@ -1,5 +1,5 @@
 
 #devopsdemo_v2
 
-![](https://github.com/guomaoqiu/test/blob/master/screenshots/demo1.png)
+![](http://git.oschina.net/demo_demo/devopsdemo_v2/raw/master/screenshots/demo1.png)
 

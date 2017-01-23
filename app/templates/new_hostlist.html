@@ -56,7 +56,12 @@
                 <form  role="form" action="{{ url_for('main.export_data') }}" method="post">
 
                   <button type="submit" class="btn btn-primary btn-sm">导出到Excel</button>
+
               </form>
+
+                  <form action="{{ url_for('salt.import_hostinfo') }}" method="post">
+                                            <button type="submit" class="btn btn-primary btn-sm" >一键收集</button>
+                                    </form>
 
                     </div>
                 </div>
@@ -97,6 +102,7 @@
 
              <div class="pagination">
          {{ macros.pagination_widget(pagination, 'salt.query_allhost') }}
+                 共计 {{ host_count }} 条记录
        </div>
                 <a>共计 {{ host_count }} 条记录</a>
 
